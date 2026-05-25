@@ -23,26 +23,26 @@ void main(void){
         delay(time_to_update_motion);
         uint8_t joypad_value = joypad();
         // printf("Joypad value: %d\n", joypad_value);
-        if (joypad_value == J_LEFT){
+        if ( (joypad_value & J_LEFT) == J_LEFT){
             horizontal_motion = -1;
             // horizontal_motion = 255; // same thing but unsigned, -1 is 255 in unsigned 8 bit
-        } else if (joypad_value == J_RIGHT){
+        } else if ( (joypad_value & J_RIGHT) == J_RIGHT){
             horizontal_motion = 1;
         } else {
             horizontal_motion = 0;
         }
-        if (joypad_value == J_UP){
+        if ( (joypad_value & J_UP) == J_UP){
             vertical_motion = -1;
             // vertical_motion = 255; // same thing but unsigned, -1 is 255 in unsigned 8 bit
-        } else if (joypad_value == J_DOWN){
+        } else if ( (joypad_value & J_DOWN) == J_DOWN){
             vertical_motion = 1;
         } else {
             vertical_motion = 0;
         }
-        if(joypad_value == J_A){
+        if((joypad_value & J_A) == J_A){
             speed_mul = 3;
         }
-        if(joypad_value == J_B){
+        if((joypad_value & J_B) == J_B){
             speed_mul = 1;
         }
         scroll_sprite(
