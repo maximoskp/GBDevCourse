@@ -7,6 +7,8 @@
 void main(void){
     uint8_t currentspriteindex = 0;
     // time management
+    uint16_t current_joypad_frame = 0;
+    uint16_t frame_to_update_joypad = 100;
     uint16_t current_motion_frame = 0;
     uint16_t frame_to_update_motion = 1000;
     uint16_t current_animation_subframe = 0;
@@ -20,9 +22,14 @@ void main(void){
     move_sprite(0, 88, 78);
     SHOW_SPRITES;
 
+    uint8_t joypad_value = 0;
+
     while(1){
+        if(++current_joypad_frame >= frame_to_update_joypad){
+            current_joypad_frame = 0;
+            joypad_value = joypad();
+        }
         if(++current_motion_frame >= frame_to_update_motion){
-            uint8_t joypad_value = joypad();
             current_motion_frame = 0;
             horizontal_motion = -1*( (J_LEFT & joypad_value)>>1 ) + (J_RIGHT & joypad_value);
             vertical_motion = -1*( (J_UP & joypad_value)>>2 ) + ( (J_DOWN & joypad_value)>>3 );
