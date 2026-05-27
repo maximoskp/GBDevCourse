@@ -1,0 +1,30 @@
+#include <gb/gb.h>
+#include <stdio.h>
+#include "character.h"
+#include "world.h"
+
+// optimised to skip delay and read motion based on a counter
+
+Character player;
+
+void main(void){
+    SPRITES_8x8;
+    character_init(&player, 80, 72);
+    SHOW_SPRITES;
+
+    show_world();
+    SHOW_BKG;
+
+    uint16_t current_joypad_frame = 0;
+    uint16_t frame_to_update_joypad = 10;
+
+    uint8_t joypad_value = 0;
+
+    while(1){
+        if(++current_joypad_frame >= frame_to_update_joypad){
+            current_joypad_frame = 0;
+            joypad_value = joypad();
+        }
+        world_control_character(&player, joypad_value);
+    }
+}
