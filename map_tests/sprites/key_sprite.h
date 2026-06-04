@@ -1,6 +1,6 @@
 /*
 
- MAP_TILES.H
+ KEY_SPRITE.H
 
  Include File.
 
@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 8 x 8
-  Tiles                : 0 to 3
+  Tiles                : 0 to 0
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -24,8 +24,8 @@
 
 
 /* Bank of tiles. */
-#define map_tilesBank 0
+#define key_spriteBank 0
 /* Start of tile array. */
-extern unsigned char map_tiles[];
+extern unsigned char key_sprite[];
 
-/* End of MAP_TILES.H */
+/* End of KEY_SPRITE.H */

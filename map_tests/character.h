@@ -1,6 +1,8 @@
 #include <gb/gb.h>
 #include <stdio.h>
 #include "sprites/walker3.c"
+#include "sprites/key_sprite.c"
+#include "sprites/killer_rabbit_sprite.c"
 
 typedef struct {
     uint8_t x;
@@ -14,7 +16,19 @@ typedef struct {
 
     uint8_t horizontal_motion;
     uint8_t vertical_motion;
+
+    uint8_t has_key;
 } Character;
+
+typedef struct {
+    uint8_t x;
+    uint8_t y;
+} Key;
+
+typedef struct {
+    uint8_t x;
+    uint8_t y;
+} Rabbit;
 
 void character_init(Character* c , uint8_t x, uint8_t y){
     c->x = x;
@@ -29,9 +43,29 @@ void character_init(Character* c , uint8_t x, uint8_t y){
     c->horizontal_motion = 0;
     c->vertical_motion = 0;
 
+    c->has_key = 0;
+
     set_sprite_data(0, 3, walker);
     set_sprite_tile(0, c->current_sprite_index);
     move_sprite(0, c->x, c->y);
+}
+
+void key_init(Key* k, uint8_t x, uint8_t y){
+    k->x = x;
+    k->y = y;
+
+    set_sprite_data(3, 0, key_sprite);
+    set_sprite_tile(1, 3);
+    move_sprite(1, k->x, k->y);
+}
+
+void rabbit_init(Rabbit* r, uint8_t x, uint8_t y){
+    r->x = x;
+    r->y = y;
+
+    set_sprite_data(4, 0, killer_rabbit_sprite);
+    set_sprite_tile(2, 4);
+    move_sprite(2, r->x, r->y);
 }
 
 void control_character(Character* c, uint8_t joypad_key){

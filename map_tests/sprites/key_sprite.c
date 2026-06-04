@@ -1,8 +1,8 @@
 /*
 
- MAP_TILES.H
+ KEY_SPRITE.C
 
- Include File.
+ Tile Source File.
 
  Info:
   Form                 : All tiles as one unit.
@@ -10,7 +10,7 @@
   Compression          : None.
   Counter              : None.
   Tile size            : 8 x 8
-  Tiles                : 0 to 3
+  Tiles                : 0 to 0
 
   Palette colors       : None.
   SGB Palette          : None.
@@ -22,10 +22,11 @@
 
 */
 
-
-/* Bank of tiles. */
-#define map_tilesBank 0
 /* Start of tile array. */
-extern unsigned char map_tiles[];
+unsigned char key_sprite[] =
+{
+  0x00,0x00,0x00,0x00,0x60,0x60,0x9F,0x9F,
+  0x95,0x95,0x60,0x60,0x00,0x00,0x00,0x00
+};
 
-/* End of MAP_TILES.H */
+/* End of KEY_SPRITE.C */
